@@ -1,9 +1,9 @@
 # constants 
-root="/tmp"
+root="/tmp/tungwen"
 image="disk_image"
 image_size=64K
 inodes=16
-
+mkdir ${root}
 # Assumptions
 # we assume the  script is ran in the working repository
 # We assume that root is an existing empty directory
