@@ -125,8 +125,8 @@ static int a1fs_statfs(const char *path, struct statvfs *st)
 	fs_ctx *fs = get_fs();
 
 	memset(st, 0, sizeof(*st));
-	st->f_bsize   = A1FS_BLOCK_SIZE/2;
-	st->f_frsize  = A1FS_BLOCK_SIZE/2;
+	st->f_bsize   = A1FS_BLOCK_SIZE;
+	st->f_frsize  = A1FS_BLOCK_SIZE;
 	st->f_blocks  = fs->size / A1FS_BLOCK_SIZE;
 	st->f_bfree   = fs->sb->free_block_count;
 	st->f_bavail  = fs->sb->free_block_count;
