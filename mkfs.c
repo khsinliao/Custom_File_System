@@ -105,6 +105,13 @@ static bool a1fs_is_present(void *image)
 }
 
 
+int cal_num_block (int a , int b){
+	int tmp = 0;
+	if ((a / b)==0) tmp = a/b;
+	else tmp = a/b + 1;
+	return tmp;
+}
+
 /**
  * Format the image into a1fs.
  *
@@ -116,13 +123,6 @@ static bool a1fs_is_present(void *image)
  * @return       true on success;
  *               false on error, e.g. options are invalid for given image size.
  */
-
-int cal_num_block (int a , int b){
-	int tmp = 0;
-	if ((a / b)==0) tmp = a/b;
-	else tmp = a/b + 1;
-	return tmp;
-}
 
 static bool mkfs(void *image, size_t size, mkfs_opts *opts)
 {
@@ -171,7 +171,7 @@ static bool mkfs(void *image, size_t size, mkfs_opts *opts)
 	memset(inode_bitmap_str , 0 , num_block_inode_bitmap *A1FS_BLOCK_SIZE);
 	memset(data_bitmap_str , 0 , num_block_blk_bitmap *A1FS_BLOCK_SIZE);
 	inode_bitmap_str[0] = 1 << 7; 
-	
+
 	a1fs_inode *first_inode = image + (inode_table * A1FS_BLOCK_SIZE);
 
 	first_inode -> mode = S_IFDIR;

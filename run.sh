@@ -16,4 +16,7 @@ truncate -s ${image_size} ${image}
 make
 
 ./mkfs.a1fs -f -i ${inodes} ${image}
+
 ./a1fs ${image} ${root}
+
+stat -f ${image}
