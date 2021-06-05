@@ -22,6 +22,7 @@
 
 #include "options.h"
 
+#include "a1fs.h"
 
 /**
  * Mounted file system runtime state - "fs context".
