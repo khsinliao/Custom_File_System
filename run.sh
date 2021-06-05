@@ -1,5 +1,5 @@
 # constants 
-root="/tmp"
+root="/tmp/tungwen"
 image="disk_image"
 image_size=64K
 inodes=16
@@ -9,7 +9,7 @@ inodes=16
 # We assume that root is an existing empty directory
 
 #prepare root and image
-fusermount -u ${root}
+#fusermount -u ${root}
 truncate -s ${image_size} ${image}
 
 # format and mount fs image
