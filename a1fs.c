@@ -132,7 +132,7 @@ static int a1fs_statfs(const char *path, struct statvfs *st)
 	st->f_bavail  = fs->sb->free_block_count;
 	st->f_files   = fs->sb->inode_count;
 	st->f_ffree   = fs->sb->free_inode_count;
-	st->f_favial  = fs->sb->free_inode_count;
+	st->f_favail  = fs->sb->free_inode_count;
 	//st->f_fsid    
 	//st->f_falg    
 	st->f_namemax = A1FS_NAME_MAX;
