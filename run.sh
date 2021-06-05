@@ -1,5 +1,5 @@
 # constants 
-root="/tmp/a1/Custom_File_System"
+root="/tmp/tungwen"
 image="disk_image"
 image_size=64K
 inodes=16
