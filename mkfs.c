@@ -133,12 +133,12 @@ static bool mkfs(void *image, size_t size, mkfs_opts *opts)
 
 	unsigned int inode_per_block = A1FS_BLOCK_SIZE / sizeof(a1fs_inode) ;
 	unsigned int num_block_inode_table =  cal_num_block(num_inode , inode_per_block) ;
-	unsigned int num_block_inode_bitmap = num_inode / A1FS_BLOCK_SIZE ;
+	unsigned int num_block_inode_bitmap = cal_num_block(num_inode , A1FS_BLOCK_SIZE);
 
 	unsigned int left_blocks = num_all_block - 1 - num_block_inode_bitmap - num_block_inode_table;
 	if (left_blocks < 2) return false;
 
-	unsigned int num_block_blk_bitmap = left_blocks / (A1FS_BLOCK_SIZE * 8);
+	unsigned int num_block_blk_bitmap = cal_num_block(left_blocks , A1FS_BLOCK_SIZE) ;
     num_block_blk_bitmap -= num_block_blk_bitmap / A1FS_BLOCK_SIZE ;
 
 	unsigned int num_reserve_block = 1 + num_block_inode_table + num_block_inode_bitmap + num_block_blk_bitmap ;
@@ -170,7 +170,8 @@ static bool mkfs(void *image, size_t size, mkfs_opts *opts)
 	unsigned char *data_bitmap_str = image + (sb -> data_bitmap * A1FS_BLOCK_SIZE);
 	memset(inode_bitmap_str , 0 , num_block_inode_bitmap *A1FS_BLOCK_SIZE);
 	memset(data_bitmap_str , 0 , num_block_blk_bitmap *A1FS_BLOCK_SIZE);
-
+	inode_bitmap_str[0] = 1 << 7; 
+	
 	a1fs_inode *first_inode = image + (inode_table * A1FS_BLOCK_SIZE);
 
 	first_inode -> mode = S_IFDIR;
