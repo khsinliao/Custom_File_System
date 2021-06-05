@@ -1,5 +1,5 @@
 # constants 
-root="/a1/Custom_File_System"
+root="/tmp/a1/Custom_File_System"
 image="disk_image"
 image_size=64K
 inodes=16
