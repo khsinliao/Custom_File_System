@@ -174,7 +174,7 @@ static bool mkfs(void *image, size_t size, mkfs_opts *opts)
 
 	a1fs_inode *first_inode = image + (inode_table * A1FS_BLOCK_SIZE);
 
-	first_inode -> mode = S_IFDIR;
+	first_inode -> mode = S_IFDIR | 0777;
 	first_inode -> size = 0;
 	first_inode -> links = 2;
 	clock_gettime(CLOCK_REALTIME, &(first_inode->mtime));
